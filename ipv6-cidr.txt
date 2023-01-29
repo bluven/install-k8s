@@ -1,0 +1,2 @@
+service-cidr: fd96:ee88:0:1::/116 
+cluster-cidr: fd96:ee88:2::/48 
