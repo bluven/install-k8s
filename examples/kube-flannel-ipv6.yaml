@@ -81,9 +81,11 @@ data:
     }
   net-conf.json: |
     {
-      "Network": "10.244.0.0/16",
+      "Network": "10.235.64.0/18",
+      "EnableIPv6": true,
+      "IPv6Network": "fd96:ee88:4::0/48",
       "Backend": {
-        "Type": "vxlan"
+        "Type": "host-gw"
       }
     }
 ---

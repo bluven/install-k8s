@@ -20,31 +20,31 @@ modprobe ip_vs
 modprobe ip_vs_rr
 modprobe ip_vs_wrr
 modprobe ip_vs_sh
-modprobe nf_conntrack_ipv4
+modprobe nf_conntrack
+modprobe br_netfilter
 
 cat > /etc/modules-load.d/ip_vs.conf << EOF 
 ip_vs
 ip_vs_rr
 ip_vs_wrr
 ip_vs_sh
-nf_conntrack_ipv4
+nf_conntrack
+br_netfilter
 EOF
 
-apt-get install -y ipvsadm ipset sysstat conntrack libseccomp-dev wget git ntpdate apt-transport-https
+apt-get install -y ipvsadm ipset sysstat conntrack libseccomp-dev wget git apt-transport-https
 
-ntpdate time.windows.com
-
-sudo apt-get update
-sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+apt-get update
+apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | apt-key add -
 curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
 cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
 EOF
 # Step 4: 更新并安装Docker-CE
-sudo apt-get -y update
-sudo apt-get -y install docker-ce
+apt-get -y update
+apt-get -y install docker.io
 
 mkdir -p /etc/docker/
 cat > /etc/docker/daemon.json << EOF
